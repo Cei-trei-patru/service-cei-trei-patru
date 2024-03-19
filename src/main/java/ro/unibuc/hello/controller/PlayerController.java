@@ -1,9 +1,12 @@
 package ro.unibuc.hello.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ro.unibuc.hello.data.PlayerEntity;
@@ -38,5 +41,11 @@ public class PlayerController {
     @ResponseBody
     public String getPlayer(@RequestParam(name="name",required=false,defaultValue="LeBron James")String name){
         return playerService.getPlayer(name);
+    }
+
+    @DeleteMapping("/deletePlayerByName")
+    @ResponseBody
+    public String deletePlayerByName(@RequestParam(name="name",required=true)String name){
+        return playerService.deleteByName(name);
     }
 }
