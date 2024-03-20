@@ -43,9 +43,5 @@ public class PlayerController {
         return playerService.getPlayer(name);
     }
 
-    @DeleteMapping("/deletePlayerByName")
-    @ResponseBody
-    public String deletePlayerByName(@RequestParam(name="name",required=true)String name){
-        return playerService.deleteByName(name);
-    }
+     
 }

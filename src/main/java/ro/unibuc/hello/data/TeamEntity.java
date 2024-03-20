@@ -25,6 +25,10 @@ public class TeamEntity {
         return "Team " + name + " was founded in " + yearFounded + ". The coach is " + coach + ".";
     }
 
+    public String getId(){
+        return id;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -43,5 +47,7 @@ public class TeamEntity {
     public List<Integer> getPlayers() {
         return players;
     }
+
+
 
 }

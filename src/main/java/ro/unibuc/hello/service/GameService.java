@@ -56,4 +56,13 @@ public class GameService {
         return("Game details:\n"+gameEntity.toString()+"Team 1 details\n"+team1Entity.getTeamInfo()+"Team 2 details\n"+team2Entity.getTeamInfo());
         
     }
+
+    public String deleteById(String id)throws EntityNotFoundException{
+        GameEntity gameEntity=gameRepository.findById(id).get();
+        if (gameEntity==null){
+            throw new EntityNotFoundException(id);
+        }
+        gameRepository.deleteById(gameEntity.getId());
+        return "Team deleted succesfully";
+    }
 }

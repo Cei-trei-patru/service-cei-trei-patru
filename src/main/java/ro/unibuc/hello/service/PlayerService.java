@@ -38,7 +38,7 @@ public class PlayerService {
         if (playerEntity==null){
             throw new EntityNotFoundException(name);
         }
-        //playerRepository.deleteById(playerEntity.getId());
+        playerRepository.deleteById(playerEntity.getId());
         return "Player deleted succesfully";
     }
 }

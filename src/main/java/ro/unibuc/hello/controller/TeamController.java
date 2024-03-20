@@ -3,10 +3,12 @@ package ro.unibuc.hello.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ro.unibuc.hello.data.TeamEntity;
 import ro.unibuc.hello.service.TeamService;
@@ -46,4 +48,11 @@ public class TeamController {
     public String getBestPlayer(@RequestParam(name="name",required = false,defaultValue = "Los Angeles Lakers") String name){
         return teamService.getBestPlayer(name);
     }
+
+    @GetMapping("/deleteTeamByName")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTeamByName(@RequestParam(name="name",required=true)String name){
+        teamService.deleteByName(name);
+    }
+
 }
