@@ -16,7 +16,7 @@ public class TeamEntity {
     public int yearFounded;
     public String coach;
 
-    public String getTeamInfo() {
+    public String getTeamInfo(String string) {
         return "Team " + name + " was founded in " + yearFounded + ". The coach is " + coach + ".";
     }
 
