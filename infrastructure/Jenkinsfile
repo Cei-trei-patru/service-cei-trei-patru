@@ -21,7 +21,7 @@ pipeline {
                 env.IMAGE_TAG = "${env.MAJOR_VERSION}.\$((${env.MINOR_VERSION} + 1)).${env.PATCH_VERSION}"
                 sh "git tag ${env.IMAGE_TAG}"
                 //sh "git commit -m '${env.IMAGE_TAG}' "
-                sh "git push https://$GITHUB_TOKEN@github.com/Cei-trei-patru/service-cei-trei-patru/tree/Radu.git ${env.IMAGE_TAG}"
+                sh "git push https://$GITHUB_TOKEN@github.com/Cei-trei-patru/service-cei-trei-patru.git ${env.IMAGE_TAG}"
             }
             sh "docker build -t dragosteleaga123/hello-img:${MAJOR_VERSION}.\$((${MINOR_VERSION} + 1)).${PATCH_VERSION} ."
             sh "docker login docker.io -u ${DOCKER_PASSWORD_USR} -p ${DOCKER_PASSWORD_PSW}"
