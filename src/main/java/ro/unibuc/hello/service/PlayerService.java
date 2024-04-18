@@ -45,7 +45,7 @@ public class PlayerService {
         if (playerEntity==null){
             throw new EntityNotFoundException(name);
         }
-        metricsRegistry.counter("Increment player entities assists per game", "endpoint", "hello").increment(playerEntity.assists_per_game);
+        metricsRegistry.counter("Increment_player_entities_assists_per_game", "endpoint", "hello").increment(playerEntity.assists_per_game);
         return playerEntity.toString();
     }
 
