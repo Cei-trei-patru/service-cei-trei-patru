@@ -20,11 +20,12 @@ pipeline {
                 env.PATCH_VERSION = sh([script: 'git tag | sort --version-sort | tail -1 | cut -d . -f 3', returnStdout: true]).trim()
                 env.IMAGE_TAG = "${env.MAJOR_VERSION}.\$((${env.MINOR_VERSION} + 1)).${env.PATCH_VERSION}"
                 sh "git tag ${env.IMAGE_TAG}"
+                sh "git commit -m '${env.IMAGE_TAG}' "
                 sh "git push https://$GITHUB_TOKEN@github.com/Cei-trei-patru/service-cei-trei-patru/tree/Radu ${env.IMAGE_TAG}"
             }
-            sh "docker build -t radumirigel/hello-img:${MAJOR_VERSION}.\$((${MINOR_VERSION} + 1)).${PATCH_VERSION} ."
+            sh "docker build -t dragosteleaga123/hello-img:${MAJOR_VERSION}.\$((${MINOR_VERSION} + 1)).${PATCH_VERSION} ."
             sh "docker login docker.io -u ${DOCKER_PASSWORD_USR} -p ${DOCKER_PASSWORD_PSW}"
-            sh "docker push radumirigel/hello-img:${MAJOR_VERSION}.\$((${MINOR_VERSION} + 1)).${PATCH_VERSION}"
+            sh "docker push dragosteleaga123/hello-img:${MAJOR_VERSION}.\$((${MINOR_VERSION} + 1)).${PATCH_VERSION}"
         }
     }
     stage('Compose image') {
