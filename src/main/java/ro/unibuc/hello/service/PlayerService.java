@@ -7,12 +7,16 @@ import ro.unibuc.hello.data.PlayerEntity;
 import ro.unibuc.hello.data.PlayerRepository;
 import ro.unibuc.hello.exception.EntityNotFoundException;
 import java.util.List;
+import io.micrometer.core.instrument.MeterRegistry;
 
 
 @Component
 public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
+
+    @Autowired
+    private MeterRegistry metricsRegistry;
 
     public PlayerEntity createPlayer(PlayerEntity newPlayer){return playerRepository.save(newPlayer);}
 
@@ -41,6 +45,7 @@ public class PlayerService {
         if (playerEntity==null){
             throw new EntityNotFoundException(name);
         }
+        metricsRegistry.counter("Increment player entities assists per game", "endpoint", "hello").increment(playerEntity.assists_per_game);
         return playerEntity.toString();
     }
 
