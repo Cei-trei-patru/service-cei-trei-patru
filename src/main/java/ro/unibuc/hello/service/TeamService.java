@@ -12,6 +12,7 @@ import ro.unibuc.hello.data.PlayerRepository;
 import ro.unibuc.hello.data.TeamEntity;
 import ro.unibuc.hello.data.TeamRepository;
 import ro.unibuc.hello.exception.EntityNotFoundException;
+import io.micrometer.core.instrument.MeterRegistry;
 
 @Component
 public class TeamService {
@@ -19,6 +20,8 @@ public class TeamService {
     private TeamRepository teamRepository;
     @Autowired
     private PlayerRepository playerRepository;
+    @Autowired
+    private MeterRegistry metricsRegistry;
 
     public String getTeamInfo(String name)throws EntityNotFoundException{
         TeamEntity teamEntity=teamRepository.findByName(name);
@@ -54,6 +57,7 @@ public class TeamService {
                 }
             }
         }
+
         // Now you have the best player
         return "Best player: " + (bestPlayer != null ? bestPlayer.toString() : "No player found");
     }
