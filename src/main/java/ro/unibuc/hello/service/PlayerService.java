@@ -47,11 +47,11 @@ public class PlayerService {
         }
         if (newPlayer.getPoints_per_game() != 0) {
             dbPlayer.setPoints_per_game(newPlayer.getPoints_per_game());
-            metricsRegistry.counter("Increment_player_entities_points_per_game", "endpoint", "hello").increment(dbPlayer.getPoints_per_game());
+            metricsRegistry.counter("Increment_player_entities_points_per_game", "endpoint1", "hello1").increment(dbPlayer.getPoints_per_game());
         }
         if (newPlayer.getRebounds_per_game() != 0) {
             dbPlayer.setRebounds_per_game(newPlayer.getRebounds_per_game());
-            metricsRegistry.counter("Increment_player_entities_rebounds_per_game", "endpoint", "hello").increment(dbPlayer.getRebounds_per_game());
+            metricsRegistry.counter("Increment_player_entities_rebounds_per_game", "endpoint2", "hello2").increment(dbPlayer.getRebounds_per_game());
         }
         if (newPlayer.getAssists_per_game() != 0) {
             dbPlayer.setAssists_per_game(newPlayer.getAssists_per_game());
