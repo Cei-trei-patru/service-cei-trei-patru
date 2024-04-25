@@ -18,3 +18,12 @@ groups:
         annotations:
           summary: Increased info retrieval rate {{ $labels.value}} {{ $value }}
           description: "A container has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WARNING-Error
+        expr: rate(Increment_player_entities_assists_per_game_total[1m]) > 1
+        for: 2s
+        labels:
+          severity: warning
+        annotations:
+          summary: Incremented APG {{ $labels.value}} {{ $value }}
+          description: "VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
